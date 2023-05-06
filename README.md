@@ -6,5 +6,5 @@
 - [member-service](https://github.com/seohaebada/everydayProject/tree/master/member-service)
 - [item-service](https://github.com/seohaebada/everydayProject/tree/master/item-service)
 <table><tr><td>
-    <img width="800" alt="image" src="project.png">
+    <img width="950" alt="image" src="project.png">
 </td></tr></table>
