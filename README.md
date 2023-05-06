@@ -5,4 +5,6 @@
 - [tag-service](https://github.com/seohaebada/everydayProject/tree/master/tag-service)
 - [member-service](https://github.com/seohaebada/everydayProject/tree/master/member-service)
 - [item-service](https://github.com/seohaebada/everydayProject/tree/master/item-service)
-![img.png](project.png)
+<table><tr><td>
+    <img width="800" alt="image" src="project.png">
+</td></tr></table>
