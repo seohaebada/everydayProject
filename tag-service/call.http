@@ -1,0 +1,7 @@
+POST http://localhost:7070/tag
+Content-Type: application/json
+
+{
+  "tagName" : "태그 테스트1"
+}
+

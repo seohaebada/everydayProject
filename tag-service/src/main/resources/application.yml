@@ -1,0 +1,15 @@
+server:
+  port: 7070
+
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432
+    username: everyuser
+    password: 1234
+    name: everydaydb
+
+logging:
+  level:
+    org:
+      springframework:
+        r2dbc: DEBUG
