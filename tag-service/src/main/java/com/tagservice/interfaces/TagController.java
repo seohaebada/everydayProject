@@ -1,4 +1,4 @@
-package com.tagservice.interfaces.controller;
+package com.tagservice.interfaces;
 
 import com.tagservice.application.TagFacade;
 import com.tagservice.domain.command.TagCommand;
