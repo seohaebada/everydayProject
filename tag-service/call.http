@@ -2,6 +2,10 @@ POST http://localhost:7070/tag
 Content-Type: application/json
 
 {
-  "tagName" : "태그 테스트1"
+  "tagName" : "태그 테스트4"
 }
+
+###
+GET http://localhost:7070/tag
+
 
