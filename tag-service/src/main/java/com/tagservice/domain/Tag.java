@@ -13,6 +13,7 @@ public class Tag {
     @Id
     private long tagId;
     private String tagName;
+    private String createdBy;
 
     public Tag(TagCommand tagCommand) {
         this.tagId = tagCommand.getTagId();

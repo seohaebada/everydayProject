@@ -1,6 +1,7 @@
 package com.tagservice.interfaces;
 
 import com.tagservice.application.TagFacade;
+import com.tagservice.domain.Tag;
 import com.tagservice.domain.command.TagCommand;
 import com.tagservice.interfaces.dto.RequestTagDto;
 import com.tagservice.interfaces.dto.TagDto;
@@ -8,6 +9,7 @@ import com.tagservice.interfaces.mapper.TagDtoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @RestController("tagController")
 @RequestMapping("/tag")
@@ -45,5 +49,18 @@ public class TagController {
         Flux<TagCommand> tagCommandFlux = tagFacade.getTags();
 
         return tagCommandFlux.map(tag -> new TagDto(tag.getTagId(), tag.getTagName()));
+    }
+
+    /**
+     * 태그 리스트 조회
+     * @return
+     */
+    @GetMapping("/{memberId}")
+    public Flux<List<String>> getTagsOfMember(@PathVariable String memberId) {
+        Flux<List<TagCommand>> tagCommandListFlux = tagFacade.getTagsOfMember(memberId);
+
+        return tagCommandListFlux.flatMap(tagCommands -> Flux.fromIterable(tagCommands)
+                .map(TagCommand::getTagName)
+                .collectList());
     }
 }

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TagService {
@@ -19,5 +21,9 @@ public class TagService {
 
     public Flux<Tag> getTags() {
         return tagRepository.findAll();
+    }
+
+    public Flux<List<Tag>> getTagsOfMember(String createdBy) {
+        return tagRepository.findByCreatedBy(createdBy);
     }
 }
