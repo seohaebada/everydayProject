@@ -26,11 +26,8 @@ public class TagFacade {
         return tagFlux.map(Tag::toCommand);
     }
 
-    public Flux<List<TagCommand>> getTagsOfMember(String memberId) {
-        Flux<List<Tag>> tagListFlux = tagService.getTagsOfMember(memberId);
-
-        return tagListFlux.flatMap(tags -> Flux.fromIterable(tags)
-                .map(Tag::toCommand)
-                .collectList());
+    public Flux<TagCommand> getTagsOfMember(String memberId) {
+        Flux<Tag> tagListFlux = tagService.getTagsOfMember(memberId);
+        return tagListFlux.map(Tag::toCommand);
     }
 }

@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository("tagRepository")
 public interface TagRepository extends ReactiveCrudRepository<Tag, Long> {
-    Flux<List<Tag>> findByCreatedBy(String createdBy);
+    Flux<Tag> findByCreatedBy(String createdBy);
 }

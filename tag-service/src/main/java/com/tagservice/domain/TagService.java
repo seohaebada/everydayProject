@@ -23,7 +23,8 @@ public class TagService {
         return tagRepository.findAll();
     }
 
-    public Flux<List<Tag>> getTagsOfMember(String createdBy) {
-        return tagRepository.findByCreatedBy(createdBy);
+    public Flux<Tag> getTagsOfMember(String createdBy) {
+        Flux<Tag> tags = tagRepository.findByCreatedBy(createdBy);
+        return tags;
     }
 }

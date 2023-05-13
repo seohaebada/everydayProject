@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController("tagController")
@@ -57,10 +58,12 @@ public class TagController {
      */
     @GetMapping("/{memberId}")
     public Flux<List<String>> getTagsOfMember(@PathVariable String memberId) {
-        Flux<List<TagCommand>> tagCommandListFlux = tagFacade.getTagsOfMember(memberId);
+        Flux<TagCommand> tagCommandListFlux = tagFacade.getTagsOfMember(memberId);
 
-        return tagCommandListFlux.flatMap(tagCommands -> Flux.fromIterable(tagCommands)
-                .map(TagCommand::getTagName)
-                .collectList());
+        return tagCommandListFlux
+                .map(tagCommand -> tagCommand.getTagName())
+                .collectList()
+                .flux();
+
     }
 }
