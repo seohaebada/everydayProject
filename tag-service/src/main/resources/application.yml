@@ -8,6 +8,6 @@ spring:
     password: 1234
     name: everydaydb
 
-logging:
-  level:
-    io.r2dbc: DEBUG
+#logging:
+#  level:
+#    io.r2dbc: DEBUG

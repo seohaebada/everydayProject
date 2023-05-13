@@ -57,13 +57,16 @@ public class TagController {
      * @return
      */
     @GetMapping("/{memberId}")
-    public Flux<List<String>> getTagsOfMember(@PathVariable String memberId) {
-        Flux<TagCommand> tagCommandListFlux = tagFacade.getTagsOfMember(memberId);
+    public Mono<List<String>> getTagsOfMember(@PathVariable String memberId) {
+        Mono<List<TagCommand>> tagCommandListMono = tagFacade.getTagsOfMember(memberId);
 
-        return tagCommandListFlux
-                .map(tagCommand -> tagCommand.getTagName())
-                .collectList()
-                .flux();
+        tagCommandListMono.subscribe(tagList -> {
+            System.out.println(tagList.size());
+        });
 
+        return tagCommandListMono
+                .flatMapIterable(tagList -> tagList)
+                .map(TagCommand::getTagName)
+                .collectList();
     }
 }

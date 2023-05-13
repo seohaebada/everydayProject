@@ -23,8 +23,8 @@ public class TagService {
         return tagRepository.findAll();
     }
 
-    public Flux<Tag> getTagsOfMember(String createdBy) {
+    public Mono<List<Tag>> getTagsOfMember(String createdBy) {
         Flux<Tag> tags = tagRepository.findByCreatedBy(createdBy);
-        return tags;
+        return tags.collectList();
     }
 }
