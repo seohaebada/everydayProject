@@ -3,9 +3,11 @@ package com.memberservice.domain
 import lombok.RequiredArgsConstructor
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.core.ParameterizedTypeReference
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Mono
+import java.util.stream.Collectors
 
 
 @Service
@@ -22,17 +24,8 @@ class ExternalTagService(
             .get()
             .uri("http://localhost:7070/tag/{memberId}", memberId)
             .retrieve()
-            .bodyToFlux(String::class.java)
-            .collectList()
+            .bodyToMono<List<String>>(object : ParameterizedTypeReference<List<String>>() {})
 
-        val tagList = tagListMono.block() ?: emptyList()
-
-        tagListMono.subscribe { tagList: List<String?> ->
-            println(
-                tagList.size
-            )
-        }
-
-        return tagList.map { tagList -> tagList }
+        return tagListMono.block() ?: emptyList()
     }
 }
