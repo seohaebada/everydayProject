@@ -32,6 +32,7 @@ class ExternalTagService(
     }
 
     fun getTags(): List<String> {
+        // "태그 테스트2태그 테스트3태그 테스트4태그 테스트1"
         val tagListFlux: Flux<String> = webClient
             .get()
             .uri("http://localhost:7070/tag/tags")
