@@ -19,4 +19,8 @@ class MemberFacade(
     fun getTagsOfMember(memberId: String): List<String> {
         return externalTagService.getTagsOfMember(memberId);
     }
+
+    fun getTags(): List<String> {
+        return externalTagService.getTags();
+    }
 }

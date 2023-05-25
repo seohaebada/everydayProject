@@ -11,4 +11,8 @@ GET http://localhost:7070/tag
 ###
 GET http://localhost:7070/tag/seohae
 
+###
+###
+GET http://localhost:7070/tag/tags
+
 

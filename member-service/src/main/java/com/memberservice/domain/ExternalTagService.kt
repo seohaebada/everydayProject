@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.bodyToFlux
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import java.util.stream.Collectors
 
@@ -27,5 +29,20 @@ class ExternalTagService(
             .bodyToMono<List<String>>(object : ParameterizedTypeReference<List<String>>() {})
 
         return tagListMono.block() ?: emptyList()
+    }
+
+    fun getTags(): List<String> {
+        val tagListFlux: Flux<String> = webClient
+            .get()
+            .uri("http://localhost:7070/tag/tags")
+            .retrieve()
+            .bodyToFlux()
+
+        /*
+        [
+          "태그 테스트2태그 테스트3태그 테스트4태그 테스트1"
+        ]
+         */
+        return tagListFlux.collectList().block() ?: emptyList()
     }
 }

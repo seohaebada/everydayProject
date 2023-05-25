@@ -1,7 +1,6 @@
 package com.tagservice.interfaces;
 
 import com.tagservice.application.TagFacade;
-import com.tagservice.domain.Tag;
 import com.tagservice.domain.command.TagCommand;
 import com.tagservice.interfaces.dto.RequestTagDto;
 import com.tagservice.interfaces.dto.TagDto;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController("tagController")
@@ -68,5 +66,16 @@ public class TagController {
                 .flatMapIterable(tagList -> tagList)
                 .map(TagCommand::getTagName)
                 .collectList();
+    }
+
+    /**
+     * 태그 리스트 조회
+     * @return
+     */
+    @GetMapping("/tags")
+    public Flux<String> getTagsList() {
+        Flux<TagCommand> tagCommandListFlux = tagFacade.getTags();
+
+        return tagCommandListFlux.map(TagCommand::getTagName);
     }
 }

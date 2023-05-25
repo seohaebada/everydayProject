@@ -28,4 +28,9 @@ class MemberController(
     fun getTagsOfMember(@PathVariable memberId: String): List<String> {
         return memberFacade.getTagsOfMember(memberId)
     }
+
+    @GetMapping("/tags")
+    fun getTags(): List<String> {
+        return memberFacade.getTags()
+    }
 }
