@@ -29,10 +29,6 @@ public class TagFacade {
     public Mono<List<TagCommand>>  getTagsOfMember(String memberId) {
         Mono<List<Tag>> tagListMono = tagService.getTagsOfMember(memberId);
 
-        tagListMono.subscribe(tagList -> {
-            System.out.println(tagList.size());
-        });
-
         return tagListMono
                 .flatMapIterable(tagList -> tagList)
                 .map(Tag::toCommand)

@@ -21,10 +21,6 @@ public class Tag {
     }
 
     public TagCommand toCommand() {
-        TagCommand tagCommand = new TagCommand();
-        tagCommand.setTagId(this.tagId);
-        tagCommand.setTagName(this.tagName);
-
-        return tagCommand;
+        return new TagCommand(this.tagId, this.tagName);
     }
 }

@@ -14,6 +14,10 @@ public class TagDto {
     private long tagId;
     private String tagName;
 
+    public TagDto(String tagName) {
+        this.tagName = tagName;
+    }
+
     public TagCommand toCommand() {
         TagCommand tagCommand = new TagCommand();
         tagCommand.setTagId(this.tagId);

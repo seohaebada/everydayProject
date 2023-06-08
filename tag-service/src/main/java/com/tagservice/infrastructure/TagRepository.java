@@ -7,7 +7,7 @@ import reactor.core.publisher.Flux;
 
 import java.util.List;
 
-@Repository("tagRepository")
+@Repository
 public interface TagRepository extends ReactiveCrudRepository<Tag, Long> {
     Flux<Tag> findByCreatedBy(String createdBy);
 }

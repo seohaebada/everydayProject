@@ -58,10 +58,6 @@ public class TagController {
     public Mono<List<String>> getTagsOfMember(@PathVariable String memberId) {
         Mono<List<TagCommand>> tagCommandListMono = tagFacade.getTagsOfMember(memberId);
 
-        tagCommandListMono.subscribe(tagList -> {
-            System.out.println(tagList.size());
-        });
-
         return tagCommandListMono
                 .flatMapIterable(tagList -> tagList)
                 .map(TagCommand::getTagName)

@@ -21,7 +21,7 @@ class MemberController(
     fun register(@RequestBody register: MemberDto.Register): String {
         val memberCommand = MemberDtoMapper.of(register)
         memberFacade.register(memberCommand)
-        return "";
+        return ""
     }
 
     @GetMapping("/{memberId}/tags")

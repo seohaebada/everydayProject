@@ -6,9 +6,7 @@ import com.tagservice.interfaces.dto.TagDto;
 
 public class TagDtoMapper {
     public static TagCommand of(RequestTagDto.Register register) {
-        TagDto tagDto = new TagDto();
-        tagDto.setTagName(register.getTagName());
-
+        TagDto tagDto = new TagDto(register.getTagName());
         return tagDto.toCommand();
     }
 }
