@@ -1,19 +1,21 @@
-package com.memberservice.domain
+package com.memberservice.domain.external
 
 import lombok.RequiredArgsConstructor
+import lombok.extern.slf4j.Slf4j
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.stereotype.Service
+import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.bodyToFlux
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-import java.util.stream.Collectors
 
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 class ExternalTagService(
     private val webClient: WebClient
 ) {
@@ -27,6 +29,14 @@ class ExternalTagService(
             .uri("http://localhost:7070/tag/{memberId}", memberId)
             .retrieve()
             .bodyToMono<List<String>>(object : ParameterizedTypeReference<List<String>>() {})
+            .doOnSuccess { res -> log.info("success") }
+            .doOnError { e ->
+                e.printStackTrace()
+                log.info("error")
+            }
+
+        // test success log 순
+        log.info("test")
 
         return tagListMono.block() ?: emptyList()
     }

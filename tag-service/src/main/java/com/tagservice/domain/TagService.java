@@ -25,6 +25,13 @@ public class TagService {
 
     public Mono<List<Tag>> getTagsOfMember(String createdBy) {
         Flux<Tag> tags = tagRepository.findByCreatedBy(createdBy);
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         return tags.collectList();
     }
 }
