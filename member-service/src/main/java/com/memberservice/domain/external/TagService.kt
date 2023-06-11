@@ -16,11 +16,11 @@ import reactor.core.publisher.Mono
 @Service
 @RequiredArgsConstructor
 @Slf4j
-class ExternalTagService(
+class TagService(
     private val webClient: WebClient
 ) {
     companion object {
-        val log: Logger = LoggerFactory.getLogger(ExternalTagService::class.java)
+        val log: Logger = LoggerFactory.getLogger(TagService::class.java)
     }
 
     fun getTagsOfMember(memberId: String): List<String> {
@@ -29,7 +29,7 @@ class ExternalTagService(
             .uri("http://localhost:7070/tag/{memberId}", memberId)
             .retrieve()
             .bodyToMono<List<String>>(object : ParameterizedTypeReference<List<String>>() {})
-            .doOnSuccess { res -> log.info("success") }
+            .doOnSuccess { res -> log.info("success : $res") }
             .doOnError { e ->
                 e.printStackTrace()
                 log.info("error")
