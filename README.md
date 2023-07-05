@@ -1,11 +1,9 @@
 # everydayProject
 [사이드 프로젝트] 끝없는 개발
-- 2023.05.02 시작
+- 2023.05.02 ~ 2023.06 : CRUD API 연습
+- 2023.07 ~ 진행중 : demo 내의 프로젝트 구현
 
 ## 기술스택
-- [tag-service](https://github.com/seohaebada/everydayProject/tree/master/tag-service)
-- [member-service](https://github.com/seohaebada/everydayProject/tree/master/member-service)
-- [item-service](https://github.com/seohaebada/everydayProject/tree/master/item-service)
 <table><tr><td>
-    <img width="950" alt="image" src="project.png">
+    <img width="950" alt="image" src="everydayProject.png">
 </td></tr></table>
