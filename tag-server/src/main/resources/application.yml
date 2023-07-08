@@ -1,0 +1,14 @@
+server:
+  port: 8085
+
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432
+    username: everyuser
+    password: 1234
+    name: studyolledb
+
+#logging:
+#  level:
+#    io.r2dbc: DEBUG
+
