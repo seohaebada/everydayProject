@@ -1,0 +1,9 @@
+### 계정 신규등록
+POST http://localhost:8081/account
+Content-Type: application/json
+
+{
+  "email" : "seohae@test.com",
+  "nickname" : "seohae",
+  "password" : "1234"
+}
